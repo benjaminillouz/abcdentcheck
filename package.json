@@ -1,0 +1,25 @@
+{
+  "name": "abcdent-checker-cloud-function",
+  "version": "1.0.0",
+  "description": "Cloud Function pour vérifier la présence d'une annonce sur ABCDent et notifier via webhook",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --target=checkAbcdentAnnonce",
+    "deploy": "gcloud functions deploy checkAbcdentAnnonce --runtime nodejs18 --trigger-http --allow-unauthenticated --memory 512MB --timeout 60s --set-env-vars ABCDENT_USERNAME=$ABCDENT_USERNAME,ABCDENT_PASSWORD=$ABCDENT_PASSWORD",
+    "test": "node index.js",
+    "dev": "NODE_ENV=development functions-framework --target=checkAbcdentAnnonce --port=8080"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "puppeteer": "^21.6.0",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "CEMEDIS",
+  "license": "MIT"
+}
